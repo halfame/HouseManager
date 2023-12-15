@@ -4,7 +4,9 @@
     <file url="file://$PROJECT_DIR$/bwie-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bwie-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bwie-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bwie-modules/bwie-system/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bwie-modules/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bwie-modules/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
