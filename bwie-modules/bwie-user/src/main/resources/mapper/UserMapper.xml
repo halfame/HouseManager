@@ -10,4 +10,15 @@
         select *
         from user where user_name=#{userName}
     </select>
+    <select id="showr" resultType="com.bwie.common.domain.Role">
+        select *
+        from role
+        <where>
+                role_status in (1,3)
+            <if test="null!=roleName and ''!=roleName">
+                and role_name like concat('%',#{roleName},'%')
+            </if>
+
+        </where>
+    </select>
 </mapper>

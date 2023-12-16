@@ -7,6 +7,9 @@ import com.bwie.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.Role;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -22,5 +25,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delbyid(Integer userId) {
         userMapper.upddel(userId);
+    }
+
+    @Override
+    public Result showr(String roleName) {
+        List<com.bwie.common.domain.Role> showr = userMapper.showr(roleName);
+        return Result.success(showr);
     }
 }

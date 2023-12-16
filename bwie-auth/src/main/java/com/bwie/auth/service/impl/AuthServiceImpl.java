@@ -6,6 +6,7 @@ import com.bwie.auth.service.AuthService;
 import com.bwie.auth.util.ImageVerificationCode;
 import com.bwie.common.constants.JwtConstants;
 import com.bwie.common.constants.TokenConstants;
+import com.bwie.common.domain.Role;
 import com.bwie.common.domain.User;
 import com.bwie.common.domain.request.LoginRequest;
 import com.bwie.common.domain.response.JwtResponse;
@@ -95,14 +96,30 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Result del(Integer userId) {
-        Result delbyid = authFeign.delbyid(userId);
-        return delbyid;
+    public Result roleshow(String roleName) {
+        Result result = authFeign.showr(roleName);
+        return result;
+    }
+
+    /**
+     * 逻辑删除角色
+     * 根据id改状态
+     *
+     * @param roleIds
+     * @return
+     */
+
+    @Override
+    public Result del(Integer[] roleIds) {
+        return null;
     }
 
     @Override
-    public Result adduser(User user) {
-//        authFeign.add(user);
+    public Result addrole(Role role) {
         return null;
     }
+
+
+
+
 }

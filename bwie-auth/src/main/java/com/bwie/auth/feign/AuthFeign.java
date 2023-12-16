@@ -1,5 +1,6 @@
 package com.bwie.auth.feign;
 
+import com.bwie.common.domain.Role;
 import com.bwie.common.domain.User;
 import com.bwie.common.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -12,4 +13,7 @@ public interface AuthFeign {
     Result<User> findname(@RequestParam String userName);
     @PostMapping("bwie-user")
     Result delbyid(@RequestParam Integer userId);
+
+    @PostMapping("showr")
+    Result showr(@RequestParam String roleName);
 }

@@ -6,10 +6,7 @@ import com.bwie.common.domain.request.LoginRequest;
 import com.bwie.common.result.Result;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -56,15 +53,25 @@ public class AuthController {
 
 
     @PostMapping("del")
-    public Result del(Integer userId){
+    public Result del(Integer[] roleIds){
         log.info("功能名称:xxx,请求URI:{},请求方式:{},请求参数:{}",
-                request.getRequestURI(),request.getMethod(),userId);
-        Result result = authService.del(userId);
+                request.getRequestURI(),request.getMethod(),roleIds);
+        Result result = authService.del(roleIds);
         log.info("功能名称:xxx,请求URI:{},请求方式:{},响应结果:{}",
                 request.getRequestURI(),request.getMethod(), JSONObject.toJSONString(result));
         return result;
     }
 
+
+    @PostMapping("showrole")
+    public Result showrole(@RequestParam String roleName){
+        log.info("功能名称:xxx,请求URI:{},请求方式:{},请求参数:{}",
+                request.getRequestURI(),request.getMethod(),roleName);
+        Result result = authService.roleshow(roleName);
+        log.info("功能名称:xxx,请求URI:{},请求方式:{},响应结果:{}",
+                request.getRequestURI(),request.getMethod(), JSONObject.toJSONString(result));
+        return result;
+    }
 
 
 
