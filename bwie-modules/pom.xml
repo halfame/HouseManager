@@ -12,8 +12,6 @@
     <artifactId>bwie-modules</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>bwie-list</module>
-        <module>bwie-user</module>
     </modules>
 
     <properties>
