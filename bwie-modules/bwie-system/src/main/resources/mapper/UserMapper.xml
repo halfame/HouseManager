@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bwie.system.mapper.SystemMapper">
+    <insert id="add">
+        INSERT INTO `house-manager`.`t_catalogue`
+        ( `name`, `pid`) VALUES
+        ( #{name}, #{pid});
+    </insert>
+
+    <select id="catalogue" resultType="com.bwie.common.domain.Catalogue">
+        select * from t_catalogue where pid = #{pid}
+    </select>
+
+
+</mapper>
