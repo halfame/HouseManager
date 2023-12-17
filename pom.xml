@@ -13,6 +13,9 @@
         <module>bwie-common</module>
         <module>bwie-gateway</module>
         <module>bwie-modules</module>
+        <module>bwie-modules/bwie-list</module>
+        <module>bwie-modules/bwie-user</module>
+
     </modules>
 
     <properties>
@@ -57,7 +60,7 @@
 
             <!-- 系统公共 依赖 版本号定义-->
             <dependency>
-                <groupId>org.example</groupId>
+                <groupId>com.bwie</groupId>
                 <artifactId>bwie-common</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
