@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bwie.list.mapper.ListMapper">
+
+
+    <select id="roomList" resultType="com.bwie.common.domain.Room">
+        SELECT * FROM t_room r LEFT JOIN t_type_card c ON r.type_idcard=c.t_crad_id
+                               LEFT JOIN t_floor f ON r.floor_id=f.floor_id
+                               LEFT JOIN t_build b on r.build_id=b.build_id
+    </select>
+</mapper>
