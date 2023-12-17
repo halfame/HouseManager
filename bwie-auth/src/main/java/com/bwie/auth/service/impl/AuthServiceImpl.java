@@ -9,6 +9,8 @@ import com.bwie.common.constants.TokenConstants;
 import com.bwie.common.domain.Role;
 import com.bwie.common.domain.User;
 import com.bwie.common.domain.request.LoginRequest;
+import com.bwie.common.domain.request.RoleShowRequest;
+import com.bwie.common.domain.request.RoleUpdRequest;
 import com.bwie.common.domain.response.JwtResponse;
 import com.bwie.common.result.Result;
 import com.bwie.common.utils.JwtUtils;
@@ -87,17 +89,18 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Result Info() {
+    public User Info() {
         String header = request.getHeader(TokenConstants.TOKEN);
         String userKey = JwtUtils.getUserKey(header);
         String s = redisTemplate.opsForValue().get(TokenConstants.LOGIN_TOKEN_KEY + userKey);
         User user = JSONObject.parseObject(s, User.class);
-        return Result.success(user);
+        return user;
     }
 
     @Override
-    public Result roleshow(String roleName) {
-        Result result = authFeign.showr(roleName);
+    public Result roleshow(RoleShowRequest roleShowRequest) {
+        roleShowRequest.setRoleId(Info().getRoleId());
+        Result result = authFeign.showr(roleShowRequest);
         return result;
     }
 
@@ -110,16 +113,28 @@ public class AuthServiceImpl implements AuthService {
      */
 
     @Override
-    public Result del(Integer[] roleIds) {
-        return null;
+    public Result delrole(Integer[] roleIds) {
+        //删除角色
+        authFeign.delr(roleIds);
+        //逻辑删除用户
+        Result delu = authFeign.delu(roleIds);
+        return delu;
     }
 
     @Override
     public Result addrole(Role role) {
-        return null;
+        role.setUpdName(Info().getUserName());
+        role.setCreaName(Info().getUserName());
+        Result addr = authFeign.addr(role);
+        return addr;
     }
 
-
+    @Override
+    public Result updrole(RoleUpdRequest role) {
+        role.setUpdName(Info().getUserName());
+        Result result = authFeign.updr(role);
+        return result;
+    }
 
 
 }

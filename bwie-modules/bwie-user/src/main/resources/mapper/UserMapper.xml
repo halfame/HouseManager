@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bwie.user.mapper.UserMapper">
-    <update id="upddel">
-        update set user_status=2 where user_id=#{userId}
+    <insert id="addr">
+        insert into role
+            (`role_name`,`crea_name`,`crea_time`,`upd_name`,`upd_time`,`role_status`)
+        values
+            (#{roleName},#{creaName},now(),#{updName},now(),1)
+    </insert>
+    <update id="updu">
+        update user set user_status=2 where role_id =
+          <foreach collection="roleIds" item="id" separator=",">
+              #{id}
+          </foreach>
+    </update>
+    <update id="updr">
+        update role set
+                        `role_name`=#{roleName},`upd_name`=#{updName},`upd_time`=now(),
+                        where `role_id`=#{roleId},
+    </update>
+    <update id="delr">
+        update role set role_status=2 where role_id =
+        <foreach collection="roleIds" item="id" separator=",">
+            #{id}
+        </foreach>
     </update>
 
 
@@ -18,6 +38,9 @@
             <if test="null!=roleName and ''!=roleName">
                 and role_name like concat('%',#{roleName},'%')
             </if>
+        <if test="null!=roleId and 6!=roleId and 7!=roleId and 8!=roleId ">
+            and role_id &lt;= #{roleId}
+        </if>
 
         </where>
     </select>
