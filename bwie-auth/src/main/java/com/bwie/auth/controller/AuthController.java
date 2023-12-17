@@ -57,7 +57,7 @@ public class AuthController {
     }
 
 
-    @PostMapping("del")
+    @PostMapping("delrole")
     public Result delrole(@RequestBody Integer[] roleIds){
         log.info("功能名称:xxx,请求URI:{},请求方式:{},请求参数:{}",
                 request.getRequestURI(),request.getMethod(),roleIds);
@@ -69,7 +69,7 @@ public class AuthController {
 
 
     @PostMapping("showrole")
-    public Result showrole(@RequestParam RoleShowRequest roleShowRequest){
+    public Result showrole(@RequestBody RoleShowRequest roleShowRequest){
         log.info("功能名称:xxx,请求URI:{},请求方式:{},请求参数:{}",
                 request.getRequestURI(),request.getMethod(),JSONObject.toJSONString(roleShowRequest));
         Result result = authService.roleshow(roleShowRequest);

@@ -30,18 +30,36 @@
         select *
         from user where user_name=#{userName}
     </select>
-    <select id="showr" resultType="com.bwie.common.domain.Role">
-        select *
-        from role
+
+    <resultMap id="map" type="com.bwie.common.domain.Role">
+       <result property="roleId" column="role_id"></result>
+        <result property="roleName" column="role_name"></result>
+        <result property="updName" column="upd_name"></result>
+        <result property="creaName" column="crea_name"></result>
+        <result property="creaTime" column="crea_time"></result>
+        <result property="roleStatus" column="role_status"></result>
+        <result property="updTime" column="upd_time"></result>
+        <collection property="powIds" ofType="java.lang.Integer">
+            <result column="pow_id"></result>
+        </collection>
+    </resultMap>
+
+
+    <select id="showr" resultMap="map">
+        select r.*,p.pow_id from role r
+        left join power_role pr on pr.role_id=r.role_id
+        left join power p on p.pow_id=pr.pow_id
+
         <where>
                 role_status in (1,3)
             <if test="null!=roleName and ''!=roleName">
                 and role_name like concat('%',#{roleName},'%')
             </if>
         <if test="null!=roleId and 6!=roleId and 7!=roleId and 8!=roleId ">
-            and role_id &lt;= #{roleId}
+            and r.role_id &lt;= #{roleId}
         </if>
 
         </where>
+
     </select>
 </mapper>

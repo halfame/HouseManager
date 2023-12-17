@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Role {
@@ -19,4 +20,5 @@ public class Role {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updTime;
     private Integer roleStatus;
+    private List<Integer> powIds;
 }

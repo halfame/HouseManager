@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient("bwie-user")
 public interface AuthFeign {
-    @PostMapping("bwie-user")
+    @PostMapping("findname")
     Result<User> findname(@RequestParam String userName);
 
 
