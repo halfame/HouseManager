@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bwie.guest.mapper.GuestMapper">
+    <insert id="addComplaint">
+        INSERT INTO `house-manager`.`t_complaint`
+        (`guest`, `describe`, `create_time`, `state`, `conductor`, `dispose_time`, `dispose_desc`)
+        VALUES
+        (#{guest},#{disposeDesc},now(),#{state},null,null, NULL)
+    </insert>
+    <insert id="follow">
+        INSERT INTO `house-manager`.`t_follow`
+        (`complaint`, `follow_user`, `satisfaction`) VALUES
+        (#{complaint},#{followUser},#{satisfaction});
+    </insert>
+    <update id="receive">
+        UPDATE `house-manager`.`t_complaint` SET
+        `conductor` = #{logon.userId},
+        `dispose_time` = now(),
+        `dispose_desc` = #{complaint.disposeDesc}
+        WHERE `id` = #{complaint.id}
+
+    </update>
+
+    <!--    因为没有提前搞好共享数据库，所以没有办法在数据库查询出-->
+<!--    <resultMap id="complaint" type="com.bwie.common.domain.Complaint">-->
+<!--        <id property="id" column="id"></id>-->
+<!--        <result property="describe" column="describe"></result>-->
+<!--        <result property="createTime" column="create_time"></result>-->
+<!--        <result property="state" column="state"></result>-->
+<!--        <result property="disposeTime" column="dispose_time"></result>-->
+<!--        <result property="disposeDesc" column="dispose_desc"></result>-->
+<!--        <association property="guest" javaType="com.bwie.common.domain.User">-->
+<!--            <id property="userId" column="user_id"></id>-->
+<!--            <result property="userName" column="user_name"></result>-->
+<!--            <result property="userTel" column="user_tel"></result>-->
+<!--        </association>-->
+<!--        <association property="conductor" javaType="com.bwie.common.domain.User">-->
+<!--            <id property="userId" column="user_id"></id>-->
+<!--            <result property="userName" column="user_name"></result>-->
+<!--            <result property="userTel" column="user_tel"></result>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+
+
+    <select id="complaint" resultType="com.bwie.common.domain.Complaint">
+        select id,guest,`describe`,create_time,state,conductor,dispose_time,dispose_desc from t_complaint;
+    </select>
+    <select id="followList" resultType="com.bwie.common.domain.Follow">
+        select * from t_follow
+    </select>
+</mapper>

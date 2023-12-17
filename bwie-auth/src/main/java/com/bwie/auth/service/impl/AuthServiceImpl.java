@@ -42,6 +42,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+
+
     @Override
     public Result getImage()  {
         ImageVerificationCode imageVerificationCode = new ImageVerificationCode();
