@@ -12,6 +12,7 @@
     <artifactId>bwie-modules</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>bwie-guest</module>
     </modules>
 
     <properties>
