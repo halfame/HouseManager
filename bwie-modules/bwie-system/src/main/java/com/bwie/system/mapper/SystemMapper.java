@@ -2,6 +2,7 @@ package com.bwie.system.mapper;
 
 import com.bwie.common.domain.Catalogue;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
 public interface SystemMapper {
 
 
-    List<Catalogue> catalogue(int i);
+    List<Catalogue> catalogue(@Param("pid") int pid);
 
     Integer add(Catalogue catalogue);
 

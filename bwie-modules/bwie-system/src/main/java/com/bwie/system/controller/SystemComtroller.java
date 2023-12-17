@@ -15,13 +15,20 @@ public class SystemComtroller {
 
     /**
      * 查询菜单目录
-     * @return
+     * 1、查询所有一级目录 pid 为0
+     * 2、查询点击目录的下级目录 pid为点击目录的id
+     *  @return
      */
     @GetMapping("/catalogue")
-    public Result catalogue(){
-        return systemService.catalogue();
+    public Result catalogue(@RequestParam Integer pid){
+        return systemService.catalogue(pid);
     }
 
+    /**
+     * 新增目录功能
+     * @param catalogue
+     * @return
+     */
     @PostMapping("/addCatalogue")
     public Result add(@RequestBody Catalogue catalogue){
         return systemService.add(catalogue);

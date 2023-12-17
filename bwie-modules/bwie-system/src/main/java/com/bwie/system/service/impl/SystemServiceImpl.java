@@ -16,8 +16,8 @@ public class SystemServiceImpl implements SystemService {
     private SystemMapper systemMapper;
 
     @Override
-    public Result catalogue() {
-        List<Catalogue> list = systemMapper.catalogue(0);
+    public Result catalogue(Integer pid) {
+        List<Catalogue> list = systemMapper.catalogue(pid);
         return Result.success(list);
     }
 

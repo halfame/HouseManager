@@ -8,6 +8,8 @@
     </insert>
 
     <select id="catalogue" resultType="com.bwie.common.domain.Catalogue">
-        select * from t_catalogue
+        select * from t_catalogue where pid = #{pid}
     </select>
+
+
 </mapper>
